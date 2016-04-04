@@ -10,45 +10,12 @@ class Date{
 
 	public Date(int day, int month, int year){
 		
+		StringBuffer error=new StringBuffer("");
 		this.year=year;
+		this.month=month;
+		this.day=day;
 
-		if((month>=1)&&(month<=12)){
-			this.month=month;
-		}else{
-			 
-		}
 		
-		switch(month){
-
-			case 1:
-			case 3:
-			case 5:
-			case 7:
-			case 8:
-			case 10:
-			case 12: if((day>=1)&&(day<=31)){
-					this.day=day;
-				}
-				break;
-			case 4:
-			case 6:
-			case 9:
-			case 11: if((day>=1)&&(day<=30)){
-					this.day=day;
-				}
-				break;
-			case 2: if(this.year%4==0){
-					if((day>=1)&&(day<=29)){
-						this.day=day;
-					}
-				}else{
-					if((day>=1)&&(day<=28)){
-						this.day=day;
-					}
-				}
-				break;
-	
-		}
 		
 
 	}
