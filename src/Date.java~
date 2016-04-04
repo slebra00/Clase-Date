@@ -1,0 +1,110 @@
+
+
+class Date{
+
+	private int day;
+
+	private int month;
+
+	private int year;
+
+	public Date(int day, int month, int year){
+		
+		this.year=year;
+
+		if((month>=1)&&(month<=12)){
+			this.month=month;
+		}else{
+			 
+		}
+		
+		switch(month){
+
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+			case 12: if((day>=1)&&(day<=31)){
+					this.day=day;
+				}
+				break;
+			case 4:
+			case 6:
+			case 9:
+			case 11: if((day>=1)&&(day<=30)){
+					this.day=day;
+				}
+				break;
+			case 2: if(this.year%4==0){
+					if((day>=1)&&(day<=29)){
+						this.day=day;
+					}
+				}else{
+					if((day>=1)&&(day<=28)){
+						this.day=day;
+					}
+				}
+				break;
+	
+		}
+		
+
+	}
+
+	public int getDay(){
+	
+	return this.day;
+	}
+
+	public int getMonth(){
+
+	return this.month;
+	}
+
+	public int getYear(){
+
+	return this.year;
+	}
+
+
+
+	public void setDay(int day){
+	
+		this.day=day;
+	}
+
+	public int setMonth(int month){
+
+		this.month=month;
+	}
+
+	public int setYear(int year){
+
+		this.year=year;
+	}
+	
+
+
+	boolean isSameYear(Date otherDate){
+
+		boolean isSameYear = false;
+
+		if(this.year==otherDate.getYear()){
+
+			isSameYear=true;
+		}
+	return isSameYear;
+	}
+
+
+
+
+
+
+
+
+
+
+}
