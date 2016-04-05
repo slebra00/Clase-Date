@@ -29,19 +29,19 @@ class Date{
 			case 8:
 			case 10:
 			case 12: if((day<1)&&(day>31)){
-					error.append(" Numero de mes incorrecto");
+					error.append(" Numero de dia incorrecto");
 				}
 				break;
 			case 4:
 			case 6:
 			case 9:
 			case 11: if((day<1)&&(day>30)){
-					error.append(" Numero de mes incorrecto")
+					error.append(" Numero de dia incorrecto")
 				}
 				break;
 
 			case 2: if((day<1)&&(day>28)){
-					error.append(" Numero de mes incorrecto")
+					error.append(" Numero de dia incorrecto")
 					}
 				}
 				break;
