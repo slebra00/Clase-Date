@@ -12,11 +12,42 @@ class Date{
 		
 		StringBuffer error=new StringBuffer("");
 		this.year=year;
+
+		if((month<1)&&(month>12)){
+
+			error.append("Numero de mes incorrecto.");
+		}else{
 		this.month=month;
-		this.day=day;
+		}
 
-		
+		switch(month){
 
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+			case 12: if((day<1)&&(day>31)){
+					error.append(" Numero de mes incorrecto");
+				}
+				break;
+			case 4:
+			case 6:
+			case 9:
+			case 11: if((day<1)&&(day>30)){
+					error.append(" Numero de mes incorrecto")
+				}
+				break;
+
+			case 2: if((day<1)&&(day>28)){
+					error.append(" Numero de mes incorrecto")
+					}
+				}
+				break;
+			default:this.day=day;
+		}
+	
 	}
 
 	public int getDay(){
@@ -154,17 +185,10 @@ class Date{
 					correcto=true;
 				}
 				break;
-			case 2: if(this.year%4==0){
-					if((day>=1)&&(day<=29)){
-						correcto=true;
-					}
-				}else{
-					if((day>=1)&&(day<=28)){
-						correcto=true;
-					}
+			case 2: if((day>=1)&&(day<=28)){
+					correcto=true;
 				}
 				break;
-	
 		}
 	}
 
