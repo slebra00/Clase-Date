@@ -57,7 +57,7 @@ class Date{
 
 		if(error.length()!=0){
 
-			throw DateException	
+			throw new DateException(error.toString());
 
 		}else{
 			this.day=day;

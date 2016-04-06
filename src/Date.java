@@ -17,7 +17,7 @@ class Date{
 
 	public Date(int day, int month, int year) throws DateException{
 		
-		StringBuffer error=new StringBuffer();
+		StringBuffer msg=new StringBuffer();
 
 		if((month<1)||(month>12)){
 
@@ -57,7 +57,7 @@ class Date{
 
 		if(error.length()!=0){
 
-			throw new DateException(error.toString());
+			throw new DateException(msg.toString());
 
 		}else{
 			this.day=day;
