@@ -1,0 +1,9 @@
+package es.unileon.prg1.Date;
+
+public class DateException extends Exception{
+	
+	public excepcionIntervalo(String msg) {
+        	super(msg);
+	}
+
+}

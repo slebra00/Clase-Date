@@ -25,7 +25,7 @@ class Date{
 		}
 		if(day<1){
 
-			error.append("No se admiten valores negativos para los días");
+			error.append("No se admiten valores negativos para los días"
 		}
 
 		switch(month){
@@ -44,12 +44,12 @@ class Date{
 			case 6:
 			case 9:
 			case 11: if(day>30){
-					error.append(" Numero de dia fuera del rango del mes\n");
+					error.append(" Numero de dia fuera del rango del mes\n")
 				}
 				break;
 
 			case 2: if(day>28){
-					error.append(" Numero de dia fuera del rango del mes\n");
+					error.append(" Numero de dia fuera del rango del mes\n")
 					}
 				}
 				break;
@@ -133,11 +133,11 @@ class Date{
 	}
 
 
-	boolean isSame(Date anotherDate){
+	boolean isSame(Date otherDate){
 
 		boolean isSame=false;
 
-		if((isSameYear()==true)&&(isSameMonth()==true)&&(isSameDay()==true)){
+		if((Date.isSameYear(otherDate)==true)&&(Date.isSameMonth(otherDate)==true)&&(Date.isSameDay(otherDate)==true)){
 
 			isSame=true;
 		}
@@ -323,7 +323,7 @@ class Date{
 
 		StringBuffer printSameMonthDays = new StringBuffer();
 
-		for(int i=1;i<=12;i++){
+		for(int i=1;i<=12,i++){
 
 			if(monthDays(this.month)==monthDays(i)){
 				
@@ -350,7 +350,7 @@ class Date{
 
 	int numberAttemps(Date myDate){
 
-		int randomMonth= Math.random()*12+1;
+		int randomMonth= Math.random()*12+1
 		int randomDay= Math.random()*monthDays(randomMonth)+1;
 
 		Date randomDate=new Date(randomDay,randomMonth,myDate.getYear());

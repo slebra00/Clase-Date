@@ -21,11 +21,11 @@ class Date{
 
 		if((month<1)||(month>12)){
 
-			error.append("Valor para mes no admitido\n");
+			msg.append("Valor para mes no admitido\n");
 		}
 		if(day<1){
 
-			error.append("No se admiten valores negativos para los días");
+			msg.append("No se admiten valores negativos para los días");
 		}
 
 		switch(month){
@@ -37,25 +37,24 @@ class Date{
 			case 8:
 			case 10:
 			case 12: if(day>31){
-					error.append("Numero de día fuera del rango del mes\n");
+					msg.append("Numero de día fuera del rango del mes\n");
 				}
 				break;
 			case 4:
 			case 6:
 			case 9:
 			case 11: if(day>30){
-					error.append(" Numero de dia fuera del rango del mes\n");
+					msg.append(" Numero de dia fuera del rango del mes\n");
 				}
 				break;
 
 			case 2: if(day>28){
-					error.append(" Numero de dia fuera del rango del mes\n");
-					}
+					msg.append(" Numero de dia fuera del rango del mes\n");
 				}
 				break;
 		}
 
-		if(error.length()!=0){
+		if(msg.length()!=0){
 
 			throw new DateException(msg.toString());
 
@@ -133,11 +132,11 @@ class Date{
 	}
 
 
-	boolean isSame(Date anotherDate){
+	boolean isSame(Date otherDate){
 
 		boolean isSame=false;
 
-		if((isSameYear()==true)&&(isSameMonth()==true)&&(isSameDay()==true)){
+		if((isSameYear(otherDate)==true)&&(isSameMonth(otherDate)==true)&&(isSameDay(otherDate)==true)){
 
 			isSame=true;
 		}
@@ -146,11 +145,7 @@ class Date{
 
 	String getMonthName(int month){
 
-		String monthName;
-
-		if(month==null){
-			month=this.month;
-		}
+		String monthName="";
 
 		switch(month){
 
@@ -213,7 +208,7 @@ class Date{
 
 	String season(){
 
-		String season;
+		String season="";
 
 		switch(this.month){
 
@@ -257,6 +252,7 @@ class Date{
 				}
 				break;
 		}
+	return season;
 	}
 		
 	String monthsLeft(){
@@ -275,14 +271,14 @@ class Date{
 
 		StringBuffer printDate= new StringBuffer();
 
-		printDate.append(this.day+" del "+getMonthName()+" de "+this.year);
+		printDate.append(this.day+" del "+getMonthName(this.month)+" de "+this.year);
 
 	return printDate.toString();
 	}
 
 	int monthDays(int month){
 
-		int monthDays;
+		int monthDays=0;
 
 		switch(month){
 
@@ -312,7 +308,7 @@ class Date{
 
 		for(int i=this.day+1;i<=monthDays(this.month);i++){
 
-			printDateUntil.append(i +" del "+getMonthName()+" de "+this.year+"\n");
+			printDateUntil.append(i +" del "+ getMonthName(this.month)+" de "+this.year+"\n");
 
 		}
 	return printDateUntil.toString();
@@ -337,7 +333,7 @@ class Date{
 
 	int daysSinceStart(){
 
-		int days;
+		int days=0;
 		
 		for(int i=1;i<this.month;i++){
 		
@@ -350,13 +346,12 @@ class Date{
 
 	int numberAttemps(Date myDate){
 
-		int randomMonth= Math.random()*12+1;
-		int randomDay= Math.random()*monthDays(randomMonth)+1;
+		int randomMonth= (int)(Math.random()*12+1);
+		int randomDay=(int) (Math.random()*monthDays(randomMonth)+1);
+		
+		int numberAttemps=1;
 
-		Date randomDate=new Date(randomDay,randomMonth,myDate.getYear());
-		int numberAttemps;
-
-		while(randomDate!=myDate){
+		while((randomMonth!=myDate.getMonth())&&(randomDay!=myDate.geDay())){
 
 			numberAttemps++;
 

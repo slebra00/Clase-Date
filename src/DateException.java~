@@ -3,8 +3,8 @@
 class DateException extends Exception{
 	
 
-	public ExcepcionIntervalo(String error) {
-        	super(error);
+	public ExcepcionIntervalo(String msg) {
+        	super(msg);
 	}
 
 }
