@@ -21,11 +21,11 @@ class Date{
 
 		if((month<1)||(month>12)){
 
-			msg.append("Valor para mes no admitido\n");
+			msg.append("Valor para mes no admitido:"+month+"\n");
 		}
 		if(day<1){
 
-			msg.append("No se admiten valores negativos para los días");
+			msg.append("No se admiten valores negativos para los días:"+day+"\n");
 		}
 
 		switch(month){
@@ -37,19 +37,19 @@ class Date{
 			case 8:
 			case 10:
 			case 12: if(day>31){
-					msg.append("Numero de día fuera del rango del mes\n");
+					msg.append("Numero de día fuera del rango del mes"+day+"\n");
 				}
 				break;
 			case 4:
 			case 6:
 			case 9:
 			case 11: if(day>30){
-					msg.append(" Numero de dia fuera del rango del mes\n");
+					msg.append(" Numero de dia fuera del rango del mes"+day+"\n");
 				}
 				break;
 
 			case 2: if(day>28){
-					msg.append(" Numero de dia fuera del rango del mes\n");
+					msg.append(" Numero de dia fuera del rango del mes:"+day+"\n");
 				}
 				break;
 		}
@@ -82,14 +82,65 @@ class Date{
 
 
 
-	public void setDay(int day){
-	
+	public void setDay(int day)throws DateException{
+
+		StringBuffer msg=new StringBuffer();
+
+		if(day<1){
+
+			msg.append("No se admiten valores negativos para los días:"+day+"\n");
+		}
+
+		switch(this.month){
+
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+			case 12: if(day>31){
+					msg.append("Numero de día fuera del rango del mes: "+day+"\n");
+				}
+				break;
+			case 4:
+			case 6:
+			case 9:
+			case 11: if(day>30){
+					msg.append(" Numero de dia fuera del rango del mes: "+day+"\n");
+				}
+				break;
+
+			case 2: if(day>28){
+					msg.append(" Numero de dia fuera del rango del mes: "+day+"\n");
+				}
+				break;
+		}
+		
+		if(msg.length()!=0){
+
+			throw new DateException(msg.toString());
+
+		}else{
 		this.day=day;
+		}
 	}
 
-	public void setMonth(int month){
+	public void setMonth(int month)throws DateException{
 
+		StringBuffer msg=new StringBuffer();
+
+			if((month<1)||(month>12)){
+
+				msg.append("Valor para mes no admitido:"+month+"\n");
+			}
+		if(msg.length()!=0){
+
+			throw new DateException(msg.toString());
+
+		}else{
 		this.month=month;
+		}
 	}
 
 	public void setYear(int year){
@@ -177,7 +228,7 @@ class Date{
 	return monthName;
 	}
 
-	void correctDay(int day, int month){
+	boolean correctDay(int day, int month){
 	
 		boolean correcto=false;
 		switch(month){
@@ -204,13 +255,14 @@ class Date{
 				}
 				break;
 		}
+	return correcto;
 	}
 
-	String season(){
+	String season(Date date){
 
 		String season="";
 
-		switch(this.month){
+		switch(date.getMonth()){
 
 			case 1:
 			case 2:	season="Invierno";
@@ -271,7 +323,7 @@ class Date{
 
 		StringBuffer printDate= new StringBuffer();
 
-		printDate.append(this.day+" del "+getMonthName(this.month)+" de "+this.year);
+		printDate.append(this.day+" de "+getMonthName(this.month)+" del "+this.year);
 
 	return printDate.toString();
 	}
@@ -308,20 +360,20 @@ class Date{
 
 		for(int i=this.day+1;i<=monthDays(this.month);i++){
 
-			printDateUntil.append(i +" del "+ getMonthName(this.month)+" de "+this.year+"\n");
+			printDateUntil.append(i +" de "+ getMonthName(this.month)+" del "+this.year+"\n");
 
 		}
 	return printDateUntil.toString();
 	}
 
 
-	String printSameMonthDays(){
+	String printSameMonthDays(Date date){
 
 		StringBuffer printSameMonthDays = new StringBuffer();
 
 		for(int i=1;i<=12;i++){
 
-			if(monthDays(this.month)==monthDays(i)){
+			if(monthDays(date.getMonth())==monthDays(i)){
 				
 				 printSameMonthDays.append(getMonthName(i)+"\n");
 			}
@@ -351,7 +403,10 @@ class Date{
 		
 		int numberAttemps=1;
 
-		while((randomMonth!=myDate.getMonth())&&(randomDay!=myDate.geDay())){
+		while((randomMonth!=myDate.getMonth())&&(randomDay!=myDate.getDay())){
+
+			randomMonth= (int)(Math.random()*12+1);
+			randomDay=(int) (Math.random()*monthDays(randomMonth)+1);
 
 			numberAttemps++;
 
@@ -363,11 +418,11 @@ class Date{
 
 		StringBuffer dayWeek= new StringBuffer();
 		int contador=0;
-
-		for(int i=0;i!=givenDate.getDay();i++){
 	
-			contador=(firstDayMonth+i)%7;
-		}
+	
+		contador=((firstDayMonth+givenDate.getDay())-1)%7;
+
+		
 		switch(contador){
 
 				case 0: dayWeek.append("Domingo");
